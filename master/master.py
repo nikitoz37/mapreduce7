@@ -143,7 +143,7 @@ def add():
         num=new_num
     )
     on_update_stmt = insert_stmt.on_conflict_do_update(
-        #index_elements=[Word.word],
+        index_elements=['word'],
         #constraint = Word.num
         #set_=dict(num=constraint + new_num)
         set_=dict(num=10)

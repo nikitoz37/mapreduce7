@@ -146,7 +146,7 @@ def add():
         index_elements=['word'],
         #constraint = Word.num
         set_=dict(num=insert_stmt.excluded.num+new_num)
-        set_=dict(num=10)
+        #set_=dict(num=10)
     )
     db.session.execute(on_update_stmt)
     db.session.commit()

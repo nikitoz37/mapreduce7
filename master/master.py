@@ -145,6 +145,8 @@ def add():
         index_elements=[Word.word],
         set_=dict(num=Word.num + new_num)
         )
+    db.session.execute(on_update_stmt)
+    db.session.commit()
    
 
     '''
@@ -159,8 +161,7 @@ def add():
             set_=dict(num += new_word)
         )
     '''
-    db.session.execute(stmt)
-    db.session.commit()
+
 
 
 @app.route('/', methods=['GET'])

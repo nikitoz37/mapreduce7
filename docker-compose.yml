@@ -22,11 +22,7 @@ services:
       context: ./master
       dockerfile: master.Dockerfile
     environment:
-      PASSWORD: postgres
-      USER: postgres
-      DB_NAME: top_words_db
-      HOST: 0.0.0.0
-      #DB_URL: postgresql://postgres:postgres@db:5432/top_words_db
+      DB_URL: postgresql://postgres:postgres@db:5432/top_words_db
     ports:
       - "8000:5000"
     depends_on:

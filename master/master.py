@@ -145,7 +145,7 @@ def add():
     on_update_stmt = insert_stmt.on_conflict_do_update(
         index_elements=['word'],
         #constraint = Word.num
-        set_=dict(num=insert_stmt.excluded.num+new_num)
+        set_=dict(num=Word.num+new_num)
         #set_=dict(num=10)
     )
     db.session.execute(on_update_stmt)

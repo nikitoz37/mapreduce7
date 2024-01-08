@@ -138,16 +138,19 @@ def add():
         set_=dict(num=new_num)
         )'''
     
-    stmt = insert(Word).values(
+    insert_stmt = insert(Word).values(
         word=new_word,
-        num=new_num)
-    on_update_stmt = stmt.on_conflict_do_update(
-        index_elements=[Word.word],
-        set_=dict(num=Word.num + new_num)
-        )
+        num=new_num
+    )
+    on_update_stmt = insert_stmt.on_conflict_do_update(
+        #index_elements=[Word.word],
+        #constraint = Word.num
+        #set_=dict(num=constraint + new_num)
+        set_=dict(num=10)
+    )
     db.session.execute(on_update_stmt)
     db.session.commit()
-   
+    return make_response(jsonify({'message': 'test route'}), 200)
 
     '''
         word_ = Word(word=new_word)
@@ -162,7 +165,18 @@ def add():
         )
     '''
 
-
+'''@app.route('/update', methods=['GET'])
+def update():
+    on_update_stmt = on_conflict_do_update(
+        index_elements=[Word.word],
+        #constraint = Word.num
+        #set_=dict(num=constraint + new_num)
+        set_=dict(num=10)
+    )
+    db.session.execute(on_update_stmt)
+    db.session.commit()
+    return make_response(jsonify({'message': 'test route'}), 200)
+'''
 
 @app.route('/', methods=['GET'])
 def index():
